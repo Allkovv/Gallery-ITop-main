@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script src="../theme-loader.js"></script>
+    <title>Топ недели — GALLERYITOP</title>
+</head>
+<body class="search-page-body">
+    <div class="login-glow"></div> 
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <a href="../search/search.html"><div class="icon"><img src="../img/search.png" alt="Поиск"></div></a>
+            <a href="../profile/profile.html"><div class="icon"><img src="../img/user.png" alt="Профиль"></div></a>
+            <a href="../top/top.html"><div class="icon"><img src="../img/stats.png" alt="Топ"></div></a>
+            <a href="../settings/settings.html"><div class="icon"><img src="../img/settings.png" alt="Настройки"></div></a>
+        </aside>
+
+        <main class="main-content glass-panel">
+            <header class="top-header">
+                <h1>ТОП НЕДЕЛИ</h1>
+                <p>Самые популярные авторы по количеству лайков</p>
+            </header>
+
+            <section class="podium">
+                <div class="podium-item silver">
+                    <div class="podium-avatar">
+                        <img src="../img/user.png" alt="">
+                        <div class="rank-badge">2</div>
+                    </div>
+                    <p class="podium-name">@Designer_Pro</p>
+                    <p class="podium-likes">1,240 ❤</p>
+                </div>
+
+                <div class="podium-item gold">
+                    <div class="podium-avatar">
+                        <div class="crown">👑</div>
+                        <img src="../img/user.png" alt="">
+                        <div class="rank-badge">1</div>
+                    </div>
+                    <p class="podium-name">@Masha_Dev</p>
+                    <p class="podium-likes">2,850 ❤</p>
+                </div>
+
+                <div class="podium-item bronze">
+                    <div class="podium-avatar">
+                        <img src="../img/user.png" alt="">
+                        <div class="rank-badge">3</div>
+                    </div>
+                    <p class="podium-name">@Tech_Guru</p>
+                    <p class="podium-likes">980 ❤</p>
+                </div>
+            </section>
+
+            <div class="top-list">
+                <div class="top-list-item">
+                    <span class="list-rank">4</span>
+                    <img src="../img/user.png" alt="" class="list-avatar">
+                    <span class="list-name">@Art_Master</span>
+                    <span class="list-role">Дизайнер</span>
+                    <span class="list-likes">850 ❤</span>
+                </div>
+                <div class="top-list-item">
+                    <span class="list-rank">5</span>
+                    <img src="../img/user.png" alt="" class="list-avatar">
+                    <span class="list-name">@Python_Lover</span>
+                    <span class="list-role">Программист</span>
+                    <span class="list-likes">720 ❤</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+    // Добавляем иконку просмотра профиля по клику (можно перенаправить)
+    document.querySelectorAll('.top-list-item').forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+            const name = item.querySelector('.list-name')?.innerText || 'пользователь';
+            alert(`Переход на профиль ${name} (демо)`);
+            // window.location.href = `../profile/profile.html?user=${name}`;
+        });
+    });
+    
+</script>
+</body>
+</html>
