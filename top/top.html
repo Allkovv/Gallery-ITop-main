@@ -18,72 +18,67 @@
             <a href="../settings/settings.html"><div class="icon"><img src="../img/settings.png" alt="Настройки"></div></a>
         </aside>
 
-        <main class="main-content glass-panel">
-            <header class="top-header">
+        <main class="main-content">
+            <section class="top-container">
                 <h1>ТОП НЕДЕЛИ</h1>
                 <p>Самые популярные авторы по количеству лайков</p>
-            </header>
 
-            <section class="podium">
-                <div class="podium-item silver">
-                    <div class="podium-avatar">
-                        <img src="../img/user.png" alt="">
-                        <div class="rank-badge">2</div>
-                    </div>
-                    <p class="podium-name">@Designer_Pro</p>
-                    <p class="podium-likes">1,240 ❤</p>
-                </div>
-
-                <div class="podium-item gold">
-                    <div class="podium-avatar">
-                        <div class="crown">👑</div>
-                        <img src="../img/user.png" alt="">
-                        <div class="rank-badge">1</div>
-                    </div>
-                    <p class="podium-name">@Masha_Dev</p>
-                    <p class="podium-likes">2,850 ❤</p>
-                </div>
-
-                <div class="podium-item bronze">
-                    <div class="podium-avatar">
-                        <img src="../img/user.png" alt="">
-                        <div class="rank-badge">3</div>
-                    </div>
-                    <p class="podium-name">@Tech_Guru</p>
-                    <p class="podium-likes">980 ❤</p>
-                </div>
+                <div id="topList"></div>
             </section>
-
-            <div class="top-list">
-                <div class="top-list-item">
-                    <span class="list-rank">4</span>
-                    <img src="../img/user.png" alt="" class="list-avatar">
-                    <span class="list-name">@Art_Master</span>
-                    <span class="list-role">Дизайнер</span>
-                    <span class="list-likes">850 ❤</span>
-                </div>
-                <div class="top-list-item">
-                    <span class="list-rank">5</span>
-                    <img src="../img/user.png" alt="" class="list-avatar">
-                    <span class="list-name">@Python_Lover</span>
-                    <span class="list-role">Программист</span>
-                    <span class="list-likes">720 ❤</span>
-                </div>
-            </div>
         </main>
     </div>
 
-    <script>
-    // Добавляем иконку просмотра профиля по клику (можно перенаправить)
-    document.querySelectorAll('.top-list-item').forEach(item => {
-        item.style.cursor = 'pointer';
-        item.addEventListener('click', () => {
-            const name = item.querySelector('.list-name')?.innerText || 'пользователь';
-            alert(`Переход на профиль ${name} (демо)`);
-            // window.location.href = `../profile/profile.html?user=${name}`;
-        });
-    });
-    
-</script>
+    <script src="scriptTop.js" defer></script>
+    <style>
+        #topList {
+        display: grid;
+        gap: 16px;
+        margin-top: 24px;
+            }
+
+        .top-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .top-rank {
+            font-size: 24px;
+            font-weight: 700;
+            width: 40px;
+            text-align: center;
+        }
+
+        .top-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .top-info {
+            flex: 1;
+        }
+
+        .top-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .top-role {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .top-likes {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e63946;
+        }
+    </style>
 </body>
 </html>

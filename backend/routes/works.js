@@ -120,6 +120,65 @@ router.put('/:id', auth, async (req, res) => {
   }
 });
 
+router.get('/top/authors', async (req, res) => {
+  try {
+    const topAuthors = await Work.aggregate([
+      {
+        $lookup: {
+          from: 'likes',
+          localField: '_id',
+          foreignField: 'work',
+          as: 'likes'
+        }
+      },
+      {
+        $group: {
+          _id: '$user',
+          totalLikes: { $sum: { $size: '$likes' } },
+          worksCount: { $sum: 1 }
+        }
+      },
+      {
+        $sort: { totalLikes: -1, worksCount: -1 }
+      },
+      {
+        $limit: 5
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'user'
+        }
+      },
+      {
+        $unwind: '$user'
+      },
+      {
+        $project: {
+          _id: 0,
+          userId: '$user._id',
+          username: '$user.username',
+          role: '$user.role',
+          avatar: '$user.avatar',
+          totalLikes: 1,
+          worksCount: 1
+        }
+      }
+    ]);
+
+    res.json(topAuthors);
+  } catch (error) {
+    console.error('TOP AUTHORS ERROR:', error);
+    res.status(500).json({
+      message: 'Ошибка загрузки топа авторов',
+      error: error.message
+    });
+  }
+});
+
+
 router.delete('/:id', auth, async (req, res) => {
   try {
     const work = await Work.findById(req.params.id);
